@@ -1,0 +1,45 @@
+.superstyle {
+    font-size: 6rem;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+
+.superstyle2 {
+    font-family: Arial;
+    font-size: 3em;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-shadow: 20px -20px magenta;
+}
+.Alabama{
+  font-family: "Nosifer", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: darkred;
+}
+
+body {
+    background: linear-gradient(cyan, purple);
+}
+
+.whiteback {
+    background-color: white;
+}
+
+.border {
+  background-color: #e0f7fa;
+  padding: 25px;
+  background-color: #fff3e0; 
+  background-clip: content-box;
+  border: 10px solid #ef5350;
+  border-image: linear-gradient(to right, #ef5350, #d81b60) 1;
+  box-shadow: 
+    0 0 0 10px #a5d6a7,           
+    0 0 0 20px #e8f5e9;
+  width: 60%;                        
+  min-height: 180px;
+  margin-left: 20%;                 
+  margin-top: 40px;
+  margin-bottom: 60px;
+  position: relative;
+}
