@@ -1,0 +1,144 @@
+body {
+  box-sizing: border-box;
+  background-color: black;
+  margin: 0;
+  padding: 20px;
+  font-family: sans-serif;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.red {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+}
+
+.green
+{
+  width: 80px;
+  height: 80px;
+  background-color: green;
+}
+
+.blue
+{
+  width: 60px;
+  height: 60px;
+  background-color: blue;
+}
+
+.yellow
+{
+  width: 40px;
+  height: 40px;
+  background-color: yellow;
+}
+
+.exercise-1,
+.exercise-2,
+.exercise-3,
+.exercise-4 {
+  margin-bottom: 60px;
+  margin-top: 60px;
+}
+
+.exercise-1 {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.exercise-1 div {
+  position: relative;
+}
+
+/* Exercise 2 */
+
+.exercise-2 {
+  position: relative;     
+  min-height: 140px;      
+}
+
+.exercise-2 .red {
+  position: relative;     
+  width: 100px;
+  height: 100px;
+  background-color: red;
+}
+
+.exercise-2 .green {
+  width: 80px;
+  height: 80px;
+  background-color: green;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.exercise-2 .blue {
+  width: 60px;
+  height: 60px;
+  background-color: blue;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.exercise-2 .yellow {
+  width: 40px;
+  height: 40px;
+  background-color: yellow;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Exercise 3 */
+
+.exercise-3 .red {
+  position: absolute; 
+}
+
+.exercise-3 .green {
+  position: relative;
+  right: 0;
+  bottom: 0;
+}
+
+.exercise-3 .blue {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.exercise-3 .yellow {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+/* Exercise 4 */
+
+.exercise-4{
+  position: relative; 
+}
+
+.exercise-4 .blue
+{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  transform: rotate(270deg);
+}
+
+.exercise-4 .yellow
+{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
