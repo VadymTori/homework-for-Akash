@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vadym Ivanov website</title>
+  <link rel="stylesheet" href="./src/styles.css">
+  <script src="src/react.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+
+<body onload="openCity(event, 'London');">
+
+  <ul class="tab">
+    <li><a href="#" class="tablinks" onclick="openCity(event, 'London')">Main page</a></li>
+    <li><a href="#" class="tablinks" onclick="openCity(event, 'Paris')">Portfolio</a></li>
+    <li><a href="#" class="tablinks" onclick="openCity(event, 'Tokyo')">Download CV</a></li>
+    <li><a href="#" class="tablinks" onclick="openCity(event, 'Berlin')">Contact me</a></li>
+  </ul>
+
+  <div id="London" class="tabcontent">
+    <div class="wrapper"><!-- Main container -->
+      <aside class="sidebar">
+        <img class="photo" src="/img/45219037_548815748904233_4950011454305599488_o.jpg" alt="My photo">                      
+        <div class="section Contacts-container"><!-- Contacts container -->
+          <h3 class="section-title contact-title">Contacts</h3>
+          <div>
+            <span class="contatcs-type"></span> <a class="contacts-link" href="tel:380631679754">+3(80) 63-167-97-54</a>
+          </div>
+          <div>
+            <span class="contatcs-type"></span> <a class="contacts-link" href="tel:380631679754">+1(443) 858-70-99</a>
+          </div>
+          <div>
+            <span class="contatcs-type">E:</span> <a class="contacts-link" href="mailto:ivanovvad90@gmail.com">ivanovvad90@gmail.com</a> 
+          </div>
+          <br>
+          <a href="https://telegram.me/VadymIvanof">
+            <img width="40px" src="img/teleg.jpg" alt="telegram link">
+          </a>
+          <a href="viber://chat?number=%2B380631679754">
+            <img width="37px" src="img/viber.jpg" alt="viber link">
+          </a>
+          <a href="https://wa.me/380631679754">
+            <img width="37px" src="img/what.png" alt="whatsup link">
+          </a>
+          <a href="https://www.messenger.com/t/vadim.ivanof.5">
+            <img width="37px" src="img/msg.png" alt="messenger link">
+          </a>
+        </div>                        
+        <div class="section skills-container"><!-- Tech skills container -->
+          <h3 class="section-title skills-title">Hard skills</h3>
+          <ul>
+            <li class="skill-item"><span class="skills-white-item">HTML</span></li>
+            <li class="skill-item"><span class="skills-white-item">CSS</span></li>
+            <li class="skill-item"><span class="skills-white-item">JavaScript</span></li>
+            <li class="skill-item"><span class="skills-white-item">Python (basic)</span></li>
+            <li class="skill-item"><span class="skills-white-item">Legal document creation</span></li>
+            <li class="skill-item"><span class="skills-white-item">MS Excel</span></li>
+            <li class="skill-item"><span class="skills-white-item">Jira</span></li>
+            <li class="skill-item"><span class="skills-white-item">Git</span></li>
+            <li class="skill-item"><span class="skills-white-item">MySQL</span></li>
+            <li class="skill-item"><span class="skills-white-item">Postman</span></li>
+            <li class="skill-item"><span class="skills-white-item">Android Studio</span></li>
+            <li class="skill-item"><span class="skills-white-item">Fiddler</span></li>
+            <li class="skill-item"><span class="skills-white-item">Visual studio code</span></li>
+            <li class="skill-item"><span class="skills-white-item">VirtualBox</span></li>
+            <li class="skill-item"><span class="skills-white-item">Cisco Packet Tracer</span></li>
+            <li class="skill-item"><span class="skills-white-item">Linux\Ubuntu</span></li>
+          </ul>
+        </div>                       
+        <div class="section skills-container"><!-- Soft skills container -->
+          <h3 class="section-title skills-title">Soft skills</h3>
+          <ul>
+            <li class="skill-item"><span class="skills-white-item">Business planning</span></li>
+            <li class="skill-item"><span class="skills-white-item">Bug tracking</span></li>
+            <li class="skill-item"><span class="skills-white-item">Easy learning</span></li>
+            <li class="skill-item"><span class="skills-white-item">Attentiveness</span></li>
+            <li class="skill-item"><span class="skills-white-item">Web Developing</span></li>
+            <li class="skill-item"><span class="skills-white-item">Economic</span></li>
+            <li class="skill-item"><span class="skills-white-item">Law</span></li>
+            <li class="skill-item"><span class="skills-white-item">Teamwork</span></li>
+            <li class="skill-item"><span class="skills-white-item">Communication</span></li>
+            <li class="skill-item"><span class="skills-white-item">Problem Solving</span></li>
+            <li class="skill-item"><span class="skills-white-item">Ability to Carry a Meeting and Make Deals</span></li>
+          </ul>
+        </div>
+        <div class="section skills-container"><!-- Language container -->
+          <h3 class="section-title skills-title">Language</h3>
+          <ul>
+            <li class="skill-item"><span class="skills-white-item">English - B2</span></li>
+            <li class="skill-item"><span class="skills-white-item">Ukraine - Native</span></li>
+            <li class="skill-item"><span class="skills-white-item">Russian - Native</span></li>
+            <li class="skill-item"><span class="skills-white-item">German  - A1</span></li>
+          </ul>
+        </div>
+      </aside>
+      <div class="info-container">
+        <div class="section"><!-- about me container -->
+          <h2 class="front-end">QA Engineer & Web Developer</h2>
+          <h1 class="name">Vadym Ivanov</h1>
+          <p class="discript">Hello, I'm from Ukraine! I'm quality assurance engineer and web developer. I'm good at theory, got 4+ years practice, working with bug cycle, creation of test documentation, etc. I want to realize myself and use my skills in interesting company and projects.</p>
+        </div>                    
+                  
+        <div class="section"><!-- work experience and education-->
+          <h3 class="section-title Projects-title">Work Experience</h3> 
+          <!-- Тут я припускаю, що обрізаний контент - це повний список робіт. Якщо потрібно, додай повний текст -->
+          <div class="demo"><!-- company minus one (example, replace with full if needed) -->
+            <h4 class="work-name">Good Gamer Group <span class="orange-item">Credit manager</span></h4>
+            <span class="work-time">August 2011 - October 2011 <span class="black">|</span> Odesa, Ukraine</span>
+            <ul>
+              <li class="work-duty">Use banking software to create a credit score for new customers.</li>
+              <li class="work-duty">Consultations about bank credit programms.</li>
+              <li class="work-duty">Searching for bugs in bank software successfully make a changings and updates for less defects.</li>
+              <li class="work-duty">Creating instructions and rules in the company</li>
+              <li class="work-duty">Consideration of claims.</li>
+            </ul>
+          </div>
+          <!-- Додай інші компанії аналогічно, якщо є повний текст -->
+        </div>    
+        <div class="section"><!-- Education container -->
+          <h3 class="section-title Projects-title">Education</h3>
+          <div>
+            <h4 class="work-name"><span class="orange-item">Fullstack Academy</span></h4>
+            <h5 class="facult">Web Developer</h5>
+            <span class="work-time">February 2023 - October 2023 <span class="black">|</span> USA</span><br>
+            <a class="project-links" href="https://www.fullstackacademy.com/">Bootcamp website</a>
+          </div>                    
+          <div>
+            <h4 class="work-name"><span class="orange-item">I.I. Mechnikov university</span></h4>
+            <h5 class="facult">Law and economic</h5>
+            <span class="work-time">September 2011 - June 2016 <span class="black">|</span> Ukraine</span><br>
+            <a class="project-links" href="https://onu.edu.ua/en/">University website</a>
+          </div>
+          <div>
+            <h4 class="work-name"><span class="orange-item">Hillel IT school</span></h4>
+            <h5 class="facult">Quality assurance engineer (manual)</h5>
+            <span class="work-time">September 2021 - February 2022 <span class="black">|</span> Remote</span><br>
+            <a class="project-links" href="https://certificate.ithillel.ua/view/51169019">QA Manual certificate</a>
+          </div>
+        </div>
+        <div class="section"><!-- Resume -->
+          <h3 class="section-title Projects-title">Resume</h3>
+          <div>
+            <h4 class="work-name"><span class="orange-item">and social profiles</span></h4>
+            <p>
+              <a class="project-links" href="https://my.indeed.com/p/vadymi-o0xfyei">Indeed profile</a>
+            </p>
+            <p>
+              <a class="project-links" href="https://www.linkedin.com/in/vadym-ivanov-99a860200/">Linkedin profile</a>
+            </p>
+            <p>
+              <a class="project-links" href="https://www.sololearn.com/profile/18374695">Sololearn profile</a>
+            </p>
+            <p>
+              <a class="project-links" href="https://github.com/VadymTori">Github profile</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="Paris" class="tabcontent">
+    <h3>Portfolio:</h3>
+    <div class="section project-container"><!-- Project and coding container -->
+      <h3 class="section-title Projects-title">You can check my QA writing and Web Developing skills here: </h3>
+      <ol>
+        <li class="project-item"> 
+          <a class="project-links" href="https://docs.google.com/spreadsheets/d/1QYMYiWRQvo09_31RqbfzxgcCKIZrhc835xGpmvL5Ps0/edit?usp=sharing">GoogleSheet link to "Hyperloop" test assignment</a>
+          <span class="project-dots">. . .</span>
+          <span>[</span><span class="proj-item">  Excel, CheckList, TestCase, Bug(s)</span><span>]</span>
+        </li>
+      </ol>
+    </div>  
+  </div>
+
+  <div id="Tokyo" class="tabcontent">
+    <h3>Downloads</h3>
+    <p>Resume:</p>
+    <a href="/CV/CV_QA_Vadym_Ivanov.pdf" download="">
+      <button>Download CV in .pdf</button>
+    </a>
+  </div>
+
+  <div id="Berlin" class="tabcontent">
+    <form id="form" action="#" method="POST" enctype="multipart/form-data">
+      <div class="row">
+        <label class="required" for="name">Your name:</label><br />
+        <input id="name" class="input form-element" name="name" type="text" value="" size="30" /><br />
+        <span id="name_validation" class="error_message"></span>
+      </div>
+      <div class="row">
+        <label class="required" for="email">Your email:</label><br />
+        <input id="email" class="input form-element" name="email" type="text" value="" size="30" /><br />
+        <span id="email_validation" class="error_message"></span>
+      </div>
+      <div class="row">
+        <label class="required" for="message">Your message:</label><br />
+        <textarea id="message" class="input form-element" name="message" rows="7" cols="30"></textarea><br />
+        <span id="message_validation" class="error_message"></span>
+      </div>
+      <input id="submit" class="form-element" type="submit" value="Send email" />
+    </form>
+  </div>
+
+  <script src="src/react.js"></script>
+</body>
+</html>

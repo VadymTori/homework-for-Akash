@@ -1,0 +1,306 @@
+@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300&subset=latin,cyrillic);
+
+
+*, ::after, ::before {
+  box-sizing: border-box;
+}
+
+@media only screen and (max-width: 740px) {
+  body {
+    background-color: #000;
+  }
+}
+
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  background: #000; 
+  color: limegreen; 
+  margin: 20px; 
+  padding: 20px; 
+  border: 1px solid limegreen; 
+  height: 100%;
+}
+
+
+.demo {
+  max-width: 1024px;
+  padding: 10px 0;
+  margin: 5% 0;
+}
+
+
+.hide, .hide + label ~ div {
+  display: none;
+}
+
+.hide + label {
+  margin: 0;
+  padding: 0;
+  color: limegreen; 
+  cursor: pointer;
+  display: inline-block;
+}
+
+
+.hide:checked + label {
+  color: red;
+  border-bottom: 0;
+}
+
+
+.hide:checked + label + div {
+  display: block; 
+  background: #111; 
+  box-shadow: inset 3px 3px 10px #000;
+  margin-left: 20px;
+  padding: 10px;
+  animation: fade ease-in 0.5s;
+}
+
+
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+.hide + label:before {
+  background-color: #1e90ff;
+  color: #fff;
+  content: "\002B";
+  display: block;
+  float: left;
+  font-size: 14px; 
+  font-weight: bold;
+  height: 16px;
+  line-height: 16px;
+  margin: 3px 5px;
+  text-align: center;
+  width: 16px;
+  border-radius: 50%;
+}
+
+.hide:checked + label:before {
+  content: "\2212";
+}
+
+
+.wrapper {
+  background: #000; 
+  display: flex;
+  max-width: 1200px;
+  box-shadow: 5px 9px 20px rgba(0, 255, 0, 0.15); 
+  padding: 20px; 
+}
+
+
+.sidebar {
+  background: #0527005e;
+  width: 420px;               
+  min-width: 400px;           
+  padding: 40px 30px;         
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.photo {
+  width: 200px; 
+  border-radius: 50%; 
+  border: 2px solid limegreen; 
+  margin-bottom: 20px; 
+}
+
+
+.section {
+  margin-bottom: 40px; 
+  padding: 20px; 
+  border-bottom: 1px solid limegreen; 
+}
+
+
+.section-title {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 24px;
+  color: limegreen;
+  margin-bottom: 20px;
+  padding-bottom: 10px; 
+}
+
+
+.contacts-link {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #0f0; 
+}
+
+
+.contatcs-type {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 24px;
+  color: #0f0;
+  margin-right: 10px;
+}
+
+
+.skill-item {
+  font-size: 14px;
+  font-weight: 400;
+  margin: 7px 0;
+  color: #0f0;
+}
+
+
+.skills-white-item {
+  color: #0f0;
+}
+
+
+.info-container {
+  padding: 110px 90px; 
+}
+
+
+.front-end {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 24px;
+  margin-bottom: 23px;
+}
+
+
+.name {
+  font-size: 45px;
+  font-weight: 700;
+  line-height: 89px;
+  color: limegreen;
+}
+
+
+.discript {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  margin-bottom: 65px;
+}
+
+
+.project-links {
+  color: #0f0;
+  font-size: 14px;
+}
+
+
+.proj-item {
+  color: #0f0;
+  font-size: 14px;
+}
+
+
+.project-item {
+  font-weight: 700;
+  margin-left: 15px;
+}
+
+
+.work-name {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  margin-bottom: 15px;
+}
+
+
+.work-time {
+  color: #a8a8a8;
+  font-size: 12px;
+}
+
+
+.work-duty {
+  color: #0f0;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+
+.orange-item {
+  color: limegreen;
+}
+
+
+.facult {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+
+.black {
+  color: #000;
+}
+
+
+ul.tab {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid limegreen;
+  background-color: #111;
+  display: inline-block;
+}
+
+ul.tab li {
+  float: left;
+}
+
+ul.tab li a {
+  display: inline-block;
+  color: limegreen;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+ul.tab li a:hover {
+  background-color: #222;
+}
+
+ul.tab li a:focus, .active {
+  background-color: #333;
+}
+
+
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border-top: none;
+}
+
+
+.form-element {
+  background: #111;
+  color: limegreen;
+  border: 1px solid limegreen;
+  padding: 10px;
+  margin: 5px 0;
+  outline: none; 
+  width: 100%;
+  box-sizing: border-box; 
+}
+
+.error_message {
+  color: red;
+}
