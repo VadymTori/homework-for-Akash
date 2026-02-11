@@ -329,17 +329,46 @@ ul.tab li a:focus, .active {
 
   @media (max-width: 768px) {
   .app {
-    flex-direction: column; /* sidebar над контентом */
+    flex-direction: column; /* sidebar on the top on content*/
   }
 
   .sidebar {
-    width: 100%;       /* повна ширина */
-    position: relative; /* не фіксовано */
-    top: auto;         /* забираємо фіксацію зверху */
+    width: 100%;       
+    position: relative; 
+    top: auto;         
     height: auto;
   }
 
   main {
     width: 100%;
   }
+}
+/* ====== Responsive layout fix ====== */
+
+.layout {
+    display: flex;
+}
+
+/* Desktop — sidebar left */
+.side {
+    flex: 0 0 280px; 
+}
+
+.info-container {
+    flex: 1;
+}
+
+/* Mobile — sidebar stay top*/
+@media (max-width: 992px) {
+    .layout {
+        flex-direction: column;
+    }
+
+    .side {
+        width: 100%;
+    }
+
+    .info-container {
+        width: 100%;
+    }
 }
