@@ -327,4 +327,19 @@ ul.tab li a:focus, .active {
     }
   }
 
-  
+  @media (max-width: 768px) {
+  .app {
+    flex-direction: column; /* sidebar над контентом */
+  }
+
+  .sidebar {
+    width: 100%;       /* повна ширина */
+    position: relative; /* не фіксовано */
+    top: auto;         /* забираємо фіксацію зверху */
+    height: auto;
+  }
+
+  main {
+    width: 100%;
+  }
+}
