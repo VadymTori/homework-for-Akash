@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nosifer&display=swap" rel="stylesheet">
+            <title>
+            Welcome
+        </title>
+    </head>
+    <body>
+        <p>## Question 1 🤔</p>
+
+<p>Based on the story of Julius Caesar's secret party and the Caesar Cipher, identify potential variables you would need. Please ensure you use appropriate variable naming conventions in JavaScript.</p>
+
+<!-- ### Answer 🔑
+
+- `partyLocation`
+- `shiftValue`
+- `encryptedMessage`
+- `decryptedMessage`
+- `isPartySafe`
+
+Note: You can give different names to the same variables and even introduce additional variables. This is just for fun and understanding the concepts. -->
+
+<p>## Question 2 🤔</p>
+
+<p>After identifying the variables from the story, specify their primitive data types in JavaScript. Also, provide these variables with some initial values.</p>
+
+<!-- ### Answer 🔑
+
+```
+let partyLocation = "GARDEN"; // String
+let shiftValue = 3; // Number
+let encryptedMessage = ""; // String
+let decryptedMessage = ""; // String
+let isPartySafe = false; // Boolean
+
+``` -->
+
+<p>## Question 3 🤔</p>
+
+<p>From the variables you've identified, determine which ones should be declared using `const` and which ones should use `let`.</p>
+
+<!-- ### Answer 🔑
+
+```
+let partyLocation = "GARDEN"; // As the message might change.
+const shiftValue = 3; // Since the shift value remains constant throughout.
+let encryptedMessage = ""; // This will change when we encode the message with the original party location.
+let decryptedMessage = ""; // This will change when we decode the encrypted message to reveal the party location.
+let isPartySafe = false; // Hopefully, this doesn't change.
+
+``` -->
+
+<p>## Question 4 🤔</p>
+
+<p>Given the variable `shiftValue`, write a piece of code to check if its value is an integer.</p>
+
+<!-- ### Answer 🔑
+
+```
+const shiftValue = 3;
+Number.isInteger(shiftValue);
+
+``` -->
+
+<p>The `Number.isInteger()` method determines whether the passed value is an integer. If `shiftValue` is an integer, it will return `true`; otherwise, it will return `false`.</p>
+
+<p># Fun Fact 🥳</p>
+
+<p>The [Caesar Cipher](https://en.wikipedia.org/wiki/Caesar_cipher) is one of the earliest known and simplest ciphers. It is a type of substitution cipher where each letter in the plaintext is shifted a certain number of places down or up the alphabet.</p>
+<br>
+<br>
+<p><b>With some help of AI I've made a small script to transform input text using Ceasar code</b></p>
+    <h2>Enter your text</h2>
+
+    <textarea id="inputText" rows="5" cols="40" placeholder="Type here text for transformation"></textarea>
+    <br><br>
+
+    <button onclick="makeSecure()">Make it secure</button>
+
+    <h2>Secured text</h2>
+    <textarea id="outputText" rows="5" cols="40" readonly></textarea>
+
+    <script src="scrit.js"></script>  
+</body>
