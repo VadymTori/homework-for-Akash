@@ -14,10 +14,12 @@ function checkAndSave() {
     alert("Space(s) are not allowed");
     return;
   }
-
   if (password.length < 5) {
     alert("Password must be more than 5 symbols");
     return;
+  }
+  else{
+    alert("Wow! You didn't make any mistakes!!!!!11")
   }
 
   // update the password
