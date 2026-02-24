@@ -12,5 +12,62 @@
     <script src="script.js"></script>
     <br>
     <button onclick="location.reload()">Page refresh</button>
+    <br>
+    -------------------------------------------------------------------------------------------------------------------
+    <!-- Next JavaScipt task part 1-->
+    <br>
+<h2>Type secret words: Eagle, Lion, Laurel, Grape, 7</h2>
+
+
+<div class="block">
+  <label for="emblemClue">Type the secret word to get secret location:</label>
+  <input type="text" id="emblemClue" placeholder="Eagle, Lion etc" oninput="updateLocationStart()"/>
+
+  <div>
+    And your location is <span id="locationAuto", style="background:#f0d683; border-color:#bd8f06;">-</span>
+  </div>
+      -------------------------------------------------------------------------------------------------------------------
+<h2>Now we can add all the secret parts:</h2>
+<h3>The best way is to input secret word:"Eagle", select location: "Forum", real secret word:"Grape", dirrection: "7"</h3>
+</div>
+
+<div class="block">
+  <label for="selectedLocation">Secret location was:</label>
+  <select id="selectedLocation">
+    <option value="">Select</option>
+    <option value="Forum">Forum</option>
+    <option value="Colosseum">Colosseum</option>
+    <option value="Villa">Villa</option>
+  </select>
+</div>
+
+<div class="block">
+  <label for="secondClue">Now input a real secret world</label>
+  <input type="text" id="secondClue" placeholder="Laurel, Grapes..." />
+</div>
+
+<div class="block">
+  <label>Dirrection:</label>
+  <div class="radio-group">
+    <label><input type="radio" name="dir" value="7"> 7</label>
+    <label><input type="radio" name="dir" value="3"> 3</label>
+    <label><input type="radio" name="dir" value="9"> 9</label>
+    <label><input type="radio" name="dir" value="4"> 4</label>
+  </div>
+</div>
+
+<button onclick="showAllResults()">Get the result</button>
+
+<div>
+  <strong>Results:</strong><br>
+  <div id="resultAuto">Secret location: -</div>
+  <div id="resultSelected">Chosen location: -</div>
+  <div id="resultSecond">Real secret word: -</div>
+  <div id="resultDirection">Dirrection -</div>
+  <hr>
+  <div id="finalMessage" style="font-size:1.15em; font-weight:bold; margin-top:12px;">
+    Secret party will be: -
+  </div>
+</div>
 </body>
 </html>

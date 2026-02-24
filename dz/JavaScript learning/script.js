@@ -9,8 +9,8 @@ function checkAndSave() {
   const input = document.getElementById("passwordInput");
   const password = input.value.trim(); //autamation remove spaces?!
   const display = document.getElementById("savedPassword");
-
-  if (password.indexOf(' ') !== -1) {
+  // if (password.indexOf(' ') >= 0) { // not perfect paty of condition
+  if (password.indexOf(' ') !== -1) {  //better condition
     alert("Space(s) are not allowed");
     return;
   }
