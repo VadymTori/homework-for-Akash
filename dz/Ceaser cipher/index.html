@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Answhers</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+        
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h3>Caesar remembers he forgot to add his best friend "BRUTUS" to the list. Add him to the beginning of the list.</h3>
+
+    <p id="secret-text1" class="hidden">
+guests.unshift("BRUTUS")
+    </p>
+    <button onclick="showText1()">Show answher</button>
+    <br>
+        <h3>How can you verify that "BRUTUS" was added to the beginning of the array?</h3>
+
+    <p id="secret-text2" class="hidden">
+guests[0]
+    </p>
+    <button onclick="showText2()">Show answher</button>
+    <br>
+            <h3>HA herald announced the arrival of "AUGUSTUS" and "LUCIA". Add them to the end of the guest list.</h3>
+
+    <p id="secret-text3" class="hidden">
+guests.push("AUGUSTUS", "LUCIA")
+    </p>
+    <button onclick="showText3()">Show answher</button>
+    <br>
+    
+
+    <script src="scrit.js"></script>  
+</body>
+</html>
