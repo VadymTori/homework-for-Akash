@@ -3,20 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Answhers</title>
-    <style>
+    <style> 
+    /* idea of hidden txt using CSS was an AI idea, I just adapt it to my webpage*/
         .hidden {
             display: none;
         }
         
         button {
             padding: 10px 20px;
-            font-size: 18px;
+            font-size: 13px;
             cursor: pointer;
         }
     </style>
 </head>
 <body>
-
+  <b>  This is how we started: </b><br>let guests = ["ANTONY", "CICERO", "CASSIUS", "CLEOPATRA"];
+<p>
+<!-- Part I -->
     <h3>Caesar remembers he forgot to add his best friend "BRUTUS" to the list. Add him to the beginning of the list.</h3>
 
     <p id="secret-text1" class="hidden">
@@ -24,6 +27,7 @@ guests.unshift("BRUTUS")
     </p>
     <button onclick="showText1()">Show answher</button>
     <br>
+    <!-- Part II -->
         <h3>How can you verify that "BRUTUS" was added to the beginning of the array?</h3>
 
     <p id="secret-text2" class="hidden">
@@ -31,6 +35,7 @@ guests[0]
     </p>
     <button onclick="showText2()">Show answher</button>
     <br>
+    <!-- Part III -->
             <h3>HA herald announced the arrival of "AUGUSTUS" and "LUCIA". Add them to the end of the guest list.</h3>
 
     <p id="secret-text3" class="hidden">
@@ -38,8 +43,43 @@ guests.push("AUGUSTUS", "LUCIA")
     </p>
     <button onclick="showText3()">Show answher</button>
     <br>
-    
+    <!-- Part IV -->
+                <h3>Caesar is curious. He wants to know if "SPARTACUS" has been invited. Check if he's on the list and find out at which position.</h3>
 
+    <p id="secret-text4" class="hidden">
+let ifSpartacusInvited = guests.indexOf("SPARTACUS") //if "SPARTACUS" is not present the value will bee "-1"
+    </p>
+    <button onclick="showText4()">Show answher</button>
+    <br>
+    <!-- Part V -->
+                    <h3>Oops! Caesar just received a message that "CASSIUS" won't be able to make it. Remove him from the list.</h3>
+
+    <p id="secret-text5" class="hidden">
+const index = guests.indexOf("CASSIUS");<br>
+if (index !== -1) {<br>
+guests.splice(index, 1);<br>
+}<br><i><b>// then I check the answher and saw, that it should work in different way, so I remade it in other way and think it's much better:</b></i><br>
+guests.splice(guests.indexOf("CASSIUS"), 1)</p>
+<button onclick="showText5()">Show answher</button>
+    <br>
+    <!-- Part VI -->
+                <h3>Caesar wants to send a special invite to the first three guests on the list. Extract these names into a new array.</h3>
+
+    <p id="secret-text6" class="hidden">
+let newListFirstThree = guests.slice(0, 3); //Tryied to do slice(0,2), watched video again and this index of second argument is really strange xD
+    </p>
+    <button onclick="showText6()">Show answher</button>
+    <br>
+    <!-- Part VII -->
+                    <h3>Caesar decides he wants the guest list in alphabetical order. Sort the array. However, Caesar wants his most honored guest (the one added first) to remain at the top of the list. Can you think of a way to sort the guests but keep the honored ones at the top?</h3>
+
+    <p id="secret-text7" class="hidden">
+guests = [guests[0], ...guests.slice(1).sort()]<br>
+//I didn't like method provided by springboard, I though that the best way would be just sort all the list ignoring the index[0] wich is "BRUTUS". I googled and found the " . . ." part- that perfectly fits my idea. But it requere guests not to be a const -> it should be let (variable), so I changed the first announce of guests (why not, hm?!)
+    </p>
+    <button onclick="showText7()">Show answher</button>
+    <br>
+    <!-- End -->
     <script src="scrit.js"></script>  
 </body>
 </html>
