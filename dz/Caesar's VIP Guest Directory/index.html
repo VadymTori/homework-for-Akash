@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caesar's VIP Guest Directory</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <h1>Caesar's VIP Guest Directory</h1>
+  <h4>I know that this task could be done in 15 minutes and I spent more time on it- to make it looks nice... I just can't stop myself (O_o)</h4>
+
+  <button id="refresh">Reset the page, result and buttons</button>
+  <h2>Ok, here is the window- that <i>console.log()</i> would show if we call const guests</h2>
+  <pre id="output"></pre>
+
+  <div class="task">
+    <h3>Step 1 </h3>
+    <p>Add "BRUTUS" to the guest directory. He's a "Senator" from "Rome", prefers "Vegan" food, and in the past, he has gifted Caesar a "Silver Dagger" and a "Marble Bust".</p>
+    <button data-task="1">Activate</button>
+  </div>
+
+  <div class="task">
+    <h3>Step 2</h3>
+    <p>Update CICERO's past gifts to include a "Golden Lyre".</p>
+    <button data-task="2">Activate</button>
+  </div>
+
+  <div class="task">
+    <h3>Step 3</h3>
+    <p>Retrieve the region of "ANTONY".</p>
+        <p>P.S. if you change Rome to anything else- it will work and show correctly</p>
+    <button data-task="3">Activate</button>
+    <div id="task3-result" class="task-result">
+  Task 3: the region of ANTONY is: <span id="antony-region-value">—</span>
+</div>
+  </div>
+
+  <div class="task">
+    <h3>Step 4</h3>
+    <p>Due to unforeseen political events, "CICERO" needs to be discreetly removed from the guest list.</p>
+    <button data-task="4">Activate</button>
+  </div>
+
+  <div class="task">
+    <h3>Step 5</h3>
+    <p>Assign ANTONY's profile to a new variable named generalProfile. Then, using this new variable, change the region of ANTONY to "Egypt".</p>
+    <button data-task="5">Activate</button>
+        <div id="task3-result" class="task-result">
+  generalProfile now looks like: <span id="generalProfile-ANTONY">—</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+/* I did not create CSS part- this is absolutly AI made due to this is make webpage userfriendly in 5 seconds. If I did it by yselt- it would take an hours or even more... */
+
+body {
+  font-family: monospace;
+  background: #0a0a0a;
+  color: #e0e0e0;
+  margin: 20px;
+  line-height: 1.5;
+}
+
+h1 {
+  color: #4ea;
+  text-align: center;
+}
+h4 {
+  color: rgb(236, 75, 35);
+  text-align: center;
+}
+h2 {
+  color: rgb(255, 255, 255);
+  text-align: center;
+}
+
+#refresh {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 1.1em;
+  background: #444;
+  color: white;
+  border: 1px solid #666;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#refresh:hover {
+  background: #555;
+}
+
+#output {
+  background: #111;
+  border: 1px solid #333;
+  padding: 16px;
+  min-height: 140px;
+  margin: 20px auto;
+  max-width: 780px;
+  white-space: pre-wrap;
+  overflow-x: auto;
+  font-size: 15px;
+}
+
+.task {
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 16px;
+  margin: 20px auto;
+  max-width: 780px;
+}
+
+.task h3 {
+  margin: 0 0 10px 0;
+  color: #6cf;
+}
+
+button[data-task] {
+  padding: 8px 16px;
+  background: #2a6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+button[data-task]:hover:not(:disabled) {
+  background: #3a8;
+}
+
+button[data-task]:disabled {
+  background: #444;
+  color: #888;
+  cursor: not-allowed;
+}
+.task-result {
+  background: #1e2a44;
+  border: 1px solid #4a6fc9;
+  border-radius: 6px;
+  padding: 12px;
+  margin: 16px auto;
+  max-width: 780px;
+  text-align: center;
+  font-size: 1.1em;
+}
+
+#antony-region-value {
+  font-weight: bold;
+  color: #7acaff;
+}
