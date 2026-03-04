@@ -42,13 +42,14 @@ function render() {
 render();
 
 // Refresh page and make buttons back to clickable position ( part made by AI)
-refreshBtn.addEventListener("click", () => {
-  guestsClone = structuredClone(guests);
-  taskButtons.forEach(btn => {
-    btn.disabled = false;
-  });
-  render();
-});
+// This part I don't need anymore...
+// refreshBtn.addEventListener("click", () => {
+//   guestsClone = structuredClone(guests);
+//   taskButtons.forEach(btn => {
+//     btn.disabled = false;
+//   });
+//   render();
+// });
 
 // Pushing button will activate part of JavaScript code
 taskButtons.forEach(button => {
