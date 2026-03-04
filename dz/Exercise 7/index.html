@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Caesar Cipher — Make it secure</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="header-description">
+      <h1>Caesar Cipher (+3 letters left)</h1>
+      <p>Enter your text in the field below, press the button — and get the encrypted version.<br>
+         Please use only latin alphabit</p>
+    </div>
+
+    <h2>Enter your text</h2>
+    <textarea 
+      id="inputText" 
+      rows="6" 
+      placeholder="Type or paste your text here..."
+    ></textarea>
+
+    <button onclick="makeSecure()">Make it secure →</button>
+
+    <h2>Secured text</h2>
+    <textarea id="outputText" rows="6" readonly></textarea>
+
+    <div class="comment">
+      <small>P.S.: I did this task already at Secret Shift Value task. But Springboard asking me to do it again and use "for" while I already use it. In comments I should explain using % alphabet.length. That was also done earlier.I'll give comment again: //here we use letters that are close to end of alphabit and need to run alphabet from the beginning </small>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
