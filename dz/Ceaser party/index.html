@@ -77,15 +77,26 @@ Number.isInteger(shiftValue);
 <br>
 <br>
 <p><b>With some help of AI I've made a small script to transform input text using Ceasar code</b></p>
-    <h2>Enter your text</h2>
+    <h2>Enter your text to encrypt</h2>
 
     <textarea id="inputText" rows="5" cols="40" placeholder="Type here text for transformation"></textarea>
     <br><br>
 
     <button onclick="makeSecure()">Make it secure</button>
-
-    <h2>Secured text</h2>
+    <br>
+    <h2>Secured text to </h2>
     <textarea id="outputText" rows="5" cols="40" readonly></textarea>
+    <br>
+<!-- ---------------------------------------------------------------------------------------------------------------------- -->
+<br>---------------------------------------------------------------------------------------------
+        <h2>Enter your text to decrypt</h2>
 
+    <textarea id="inputText2" rows="5" cols="40" placeholder="Type here text for transformation"></textarea>
+    <br><br>
+
+    <button onclick="makeUnsecure()">Make it unsecure</button>
+
+    <h2>Unecured text</h2>
+    <textarea id="outputText2" rows="5" cols="40" readonly></textarea>
     <script src="scrit.js"></script>  
 </body>

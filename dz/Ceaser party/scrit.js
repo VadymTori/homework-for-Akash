@@ -77,3 +77,25 @@ const encryptedFirstLetter = getElementById2[newIndex];
 // - It accepts two parameters: the starting index (inclusive) and the ending index (exclusive).
 const encryptedMessage = "EUXWXV";
 const teaserMessage = encryptedMessage.slice(0, 3);
+// ------------------------------------------------------------------------------------------------
+function makeUnsecure() {
+    const input = document.getElementById("inputText2").value;
+    let result = "";
+
+    for (let i = 0; i < input.length; i++) { 
+        let char = input[i];
+
+        if (char >= 'a' && char <= 'z') { 
+            result += String.fromCharCode((char.charCodeAt(0) - 97 - 3) % 26 + 97); 
+        } 
+        else if (char >= 'A' && char <= 'Z') { 
+            result += String.fromCharCode((char.charCodeAt(0) - 65 - 3) % 26 + 65); 
+        // everything I did, just changed +3 to -3. Else function is copypasted from the top of this code
+        } 
+        else {
+            result += char; 
+        }
+    }
+
+    document.getElementById("outputText2").value = result.toLowerCase(); 
+}
