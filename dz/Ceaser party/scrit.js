@@ -96,6 +96,6 @@ function makeUnsecure() {
             result += char; 
         }
     }
-
+// UPDATE: I found a bug where characters xyz did not showed correctly while I was doing next task. I fixed it in new code for the next task
     document.getElementById("outputText2").value = result.toLowerCase(); 
 }

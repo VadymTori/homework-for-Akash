@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Caesar enigma Alfa version</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <h1>Caesar enigma Alfa version</h1>
+
+    <!-- AI part maiden of selecting number shift -->
+    <div class="dial-container">
+        <canvas id="dial" width="200" height="200"></canvas>
+        <div class="shift-display">Shift: <span id="shiftValue">3</span></div>
+    </div>
+    <div class="grid">
+        <div class="card">
+            <h2>Encrypt</h2>
+            <textarea id="inputText" placeholder="Enter text..."></textarea>
+            <textarea id="encryptedText" placeholder="Encrypted text..." readonly></textarea>
+    <!-- AI part maiden of copy/clear buttons -->
+            <div class="buttons">
+                <button onclick="copyText('encryptedText')">Copy</button>
+                <button onclick="clearText('inputText','encryptedText')">Clear</button>
+            </div>
+        </div>
+        <div class="card">
+            <h2>Decrypt</h2>
+            <textarea id="decryptInput" placeholder="Paste encrypted text..."></textarea>
+            <textarea id="decryptedText" placeholder="Decrypted text..." readonly></textarea>
+            <div class="buttons">
+    <!-- Copy paste part code from AI -->
+                <button onclick="copyText('decryptedText')">Copy</button>
+                <button onclick="clearText('decryptInput','decryptedText')">Clear</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="scripts.js"></script>
+</body>
+</html>
