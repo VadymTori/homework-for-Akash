@@ -35,30 +35,36 @@ function shiftLetter(char, shift){
 
 //ENCRYPT PART// (It take too much time to encrypt it in the same way,,, so the function will 
 // be not finished *until better times* and left unfinished, while decrypt is working... sry =* )
-function encrypt(message, shiftValue){
-    shiftValue = ((shiftValue % 26) + 26) % 26; 
+// P.S.S. Again with AI help and task answher, where you show the starter code- I finished that function working
+function encrypt(message, shiftValue) {
+    const shift = ((shiftValue % 26) + 26) % 26;
     let result = "";
-    let letterCount = 0;
-    let base = "a".charCodeAt(0);
-    for(let char of message){
-        if(char.match(/[a-z]/i)){
-            let isUpper = char === char.toUpperCase();
-            let lowerChar = char.toLowerCase();
-          let shifted =
-            ((lowerChar.charCodeAt(0) - base + shiftValue) % 26) + base;
-            let newChar = String.fromCharCode(shifted);
-            result += isUpper ? newChar.toUpperCase() : newChar;
-            letterCount++;
-            if(letterCount % 2 === 0){
-                result += randomLetter();
+    let counter = 0; //letters counter
+    for (let char of message) {
+        let newChar = char;  
+        if (char.match(/[a-z]/i)) {// count only a-z letters (I though any symbols befor)
+            const isUpper = char === char.toUpperCase();
+            const base = "a".charCodeAt(0);
+            const lowerCharCode = char.toLowerCase().charCodeAt(0);
+            const shiftedCode = ((lowerCharCode - base + shift) % 26) + base; //this part is hard for me to understand- why we should decrypt less of 26 twice 1) shiftValue 2) here
+            newChar = String.fromCharCode(shiftedCode);
+            if (isUpper) {
+                newChar = newChar.toUpperCase();
             }
+        }
+        result += newChar; //Return the symbols (!)
+        counter++;
 
-        } else {
-            result += char;
+        // every 2 letters + randomLetter()
+        if (counter === 2) {
+            result += randomLetter();
+            counter = 0;
         }
     }
+
     return result;
 }
+
 //DECRYPT PART//
 
 
