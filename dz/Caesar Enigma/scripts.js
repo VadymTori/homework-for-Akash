@@ -33,58 +33,58 @@ function shiftLetter(char, shift){
     return newLetter;
 }
 
-//ENCRYPT PART//
+//ENCRYPT PART// (It take too much time to encrypt it in the same way,,, so the function will 
+// be not finished *until better times* and left unfinished, while decrypt is working... sry =* )
 function encrypt(message, shiftValue){
-
+    shiftValue = ((shiftValue % 26) + 26) % 26; 
     let result = "";
     let letterCount = 0;
-    shiftValue = normalizeShift(shiftValue);
-
-    for(let char of message){ //AI guided to do this part using "for(let x of y)" //" while DECRYPT PAART used regular and common "for (let i, i<count, i++)"" //
-
-        if(alphabet.includes(char.toLowerCase())){
-
-            result += shiftLetter(char, shiftValue);
+    let base = "a".charCodeAt(0);
+    for(let char of message){
+        if(char.match(/[a-z]/i)){
+            let isUpper = char === char.toUpperCase();
+            let lowerChar = char.toLowerCase();
+          let shifted =
+            ((lowerChar.charCodeAt(0) - base + shiftValue) % 26) + base;
+            let newChar = String.fromCharCode(shifted);
+            result += isUpper ? newChar.toUpperCase() : newChar;
             letterCount++;
-
-            if(letterCount % 2 === 0){ //This if method AI maid... my brain started melting when I tried to add random leeter only ofter alphabet letters (as require task). But techncaly Springboard whanted random letter after 2 any symbol/letter/etc //
+            if(letterCount % 2 === 0){
                 result += randomLetter();
             }
 
         } else {
             result += char;
         }
-
     }
-
     return result;
 }
-
 //DECRYPT PART//
-function decrypt(message, shiftValue){
 
+
+function decrypt(encryptedMessage, shiftValue) {
+    shiftValue = ((shiftValue % 26) + 26) % 26; //If shiftValue more than 26
+    let filtered = ""; //remove every 2 letter
+    for (let i = 0; i < encryptedMessage.length; i++) {
+        if (i % 3 !== 2) {
+            filtered += encryptedMessage[i];
+        }
+    }
+
+//this is fnal part of rotating has been taking from task solution and upgradet by AI
     let result = "";
-    let letterCount = 0;
-
-    shiftValue = normalizeShift(shiftValue);
-
-    for(let i = 0; i < message.length; i++){
-
-        let char = message[i];
-
-        if(alphabet.includes(char.toLowerCase())){
-
-            result += shiftLetter(char, -shiftValue); //shiftValue
-            letterCount++;
-
-            if(letterCount % 2 === 0){
-                i++; // to skip random letter using shiftValue//
-            }
-
+    let base = "a".charCodeAt(0);
+    for (let char of filtered) {
+        if (char.match(/[a-z]/i)) {
+            let isUpper = char === char.toUpperCase();
+            let lowerChar = char.toLowerCase();
+            let shifted =((lowerChar.charCodeAt(0) - base - shiftValue + 26) % 26) + base;
+            let newChar = String.fromCharCode(shifted);
+            // output the result
+            result += isUpper ? newChar.toUpperCase() : newChar;
         } else {
             result += char;
         }
-
     }
 
     return result;
@@ -113,7 +113,7 @@ function updateTexts(){
 inputText.addEventListener("input", updateTexts);
 decryptInput.addEventListener("input", updateTexts);
 
-//Copu button//
+//Copy button//
 function copyText(id){
     navigator.clipboard.writeText(document.getElementById(id).value);
 }
