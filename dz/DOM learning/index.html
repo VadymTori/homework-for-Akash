@@ -3,19 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOM Learning</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-        }
-    </style>
+    <title>DOM Learning Death Note</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Welcome to DOM Learning</h1>
-    <p>This is a starter page for practicing DOM manipulation.</p>
-    
-  <script src="script.js"></script>
+    <h2>Welcome to site where DOM Learning how to use the Death Note</h2>
+    <p>This is a starter page for practicing DOM manipulation and do a heart attack to your enemies.</p>
+
+    <form id="add-friends">
+        <label for="first-name">Add people you don't like</label>
+        <input type="text" id="first-name" required>
+        <button type="submit">Add to hate list</button>
+    </form>
+
+    <ul id="friend-list">
+        <li>
+            <span class="friend-name">Person who mix pizza and pineapple</span>
+            <button class="edit-btn">Edit</button>
+            <button class="remove-btn">Mandatory sepoku</button>
+        </li>
+        <li>
+            <span class="friend-name">Necromancer who want to rise one German painter</span>
+            <button class="edit-btn">Edit</button>
+            <button class="remove-btn">Mandatory sepoku</button>
+        </li>
+        <li>
+            <span class="friend-name">Email scamers who tell you win a million dollars but you have to pay 100$ first</span>
+            <button class="edit-btn">Edit</button>
+            <button class="remove-btn">Mandatory sepoku</button>
+        </li>
+    </ul>
+
+    <script src="script.js"></script>
 </body>
 </html>
