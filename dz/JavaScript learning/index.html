@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Testing?</title>
     <link href="https://fonts.googleapis.com/css2?family=Nosifer&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h2>Output</h2>
@@ -15,7 +16,7 @@
 
   <input type="text" id="passwordInput" placeholder="You password" />
   <br>
-  <button onclick="checkAndSave()">Save Password</button>
+  <button onclick="checkAndSave()"class="neon-button red">Save Password</button>
 
   <div id="result" onclick="showSavedMessage()">
     And your password is: <span id="savedPassword">-</span>
@@ -24,7 +25,7 @@
   <p>----------------------------------------------------------------------</p>
 <h2>Random card generator:  </h2>
 
-<button onclick="getRandomCard()">Take a card</button>
+<button onclick="getRandomCard()" class="neon-button red">Take a card</button>
 
 <p id="cardResult">And your card is....</p>
   <script src="script.js"></script>

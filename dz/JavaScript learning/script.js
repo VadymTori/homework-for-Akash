@@ -35,7 +35,7 @@ function showSavedMessage() {
   }
   // showing message
 }
-function getCard() {
+function getRandomCard() {
     const suits = [" ♠ (Spades)", " ♥ (Hearts)", " ♦ (Diamonds)", " ♣ (Clubs)"];
     const ranks = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
     const randomSuit = suits[Math.floor(Math.random() * suits.length)];
