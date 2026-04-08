@@ -4,7 +4,7 @@ body {
     margin: 0;
     padding: 40px 20px;
     background-color: #0a0a0a;
-    color: #00ff9d;
+    color: #ea00ff;
     line-height: 1.6;
 }
 
@@ -14,7 +14,7 @@ h2, p {
 
 h2 {
     font-size: 2.0em;
-    text-shadow: 0 0 20px #00ff9d;
+    text-shadow: 0 0 20px #ea00ff;
 }
 
 p {
@@ -42,37 +42,37 @@ input[type="text"] {
     min-width: 280px;
     padding: 14px;
     background-color: #1a1a0a;
-    border: 3px solid #00ff9d;
-    color: #00ff9d;
+    border: 3px solid #ea00ff;
+    color: #ea00ff;
     outline: none;
-    box-shadow: 0 0 20px rgba(0, 255, 157, 0.6);
+    box-shadow: 0 0 20px rgba(35, 175, 190, 0.892);
 }
 
 button {
     padding: 14px 25px;
     background-color: #1a1a1a;
-    border: 3px solid #00ff9d;
-    color: #00ff9d;
+    border: 3px solid #ea00ff;
+    color: #ea00ff;
     cursor: pointer;
     transition: all 0.3s ease;
     border-radius: 5px;
 }
 
 button:hover {
-    background-color: #00ff9d;
+    background-color: #ea00ff;
     color: #0a0a0a;
-    box-shadow: 0 0 30px rgba(0, 255, 157, 1);
+    box-shadow: 0 0 30px rgb(0, 200, 255);
 }
 
 #color-picker-btn {
-    border-color: #00ff9d;
-    color: #00ff9d;
+    border-color: #ea00ff;
+    color: #ea00ff;
 }
 
-#color-picker-btn:hover {
+/* #color-picker-btn:hover {
     background-color: #ffcc00;
     color: #0a0a0a;
-}
+} */
 
 /* Головний стиль боксів */
 .box {
@@ -80,9 +80,9 @@ button:hover {
     background-color: #1a1a1a;
     margin: 18px auto;
     padding: 18px 25px;
-    border: 3px solid #00ff9d;
+    border: 3px solid #ea00ff;
     border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 255, 157, 0.4);
+    box-shadow: 0 0 20px rgba(35, 175, 190, 0.892);
     transition: all 0.3s ease;
     max-width: 800px;
     display: flex;
@@ -92,7 +92,7 @@ button:hover {
 }
 
 .box:hover {
-    box-shadow: 0 0 35px rgba(0, 255, 157, 0.7);
+    box-shadow: 0 0 35px rgba(0, 187, 255, 0.7);
     transform: translateY(-3px);
 }
 
@@ -109,7 +109,7 @@ button:hover {
     font-size: 0.75em;        
     font-weight: normal;
     opacity: 0.65;
-    color: #00ff9d;
+    color: #3bf9f3;
     background-color: rgba(10, 10, 10, 0.7);  
     padding: 2px 60px;
     border-radius: 4px;
@@ -148,7 +148,7 @@ button:hover {
     font-size: 1.25em;
     background: transparent;
     border: none;           /* text shoud stay inside box */
-    color: #00ff9d;
+    color: #0004ff;
     resize: none;           /* textarea should not resize */
     outline: none;
     font-family: inherit;
