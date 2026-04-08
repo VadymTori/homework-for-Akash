@@ -10,15 +10,27 @@
     <h2>Meme Generator by Vadym</h2>
     <p>Here you can create memes not just in your head =(X_x)=</p>
 
-    <form id="add-friends">
-        <label for="link">Add people you don't like</label>
-        <label for="top-text">Add people you don't like</label>
-        <label for="bottom-text">Add people you don't like</label>
-        <input type="text" id="link" required>
-        <input type="text" id="top-text" required>
-        <input type="text" id="bottom-text" required>
-        <button type="submit">Let the memes begin! *muahaha*</button>
-    </form>
+<form id="meme-form" class="meme-form">
+    <div class="form-group">
+        <label for="image-link">Add link to picture</label>
+        <input type="text" id="image-link" required placeholder="https://example.com/funny-image.jpg">
+    </div>
+
+    <div class="form-group">
+        <label for="top-text">Add top text</label>
+        <input type="text" id="top-text" required placeholder="Top Text">
+    </div>
+
+    <div class="form-group">
+        <label for="bottom-text">Add bottom text</label>
+        <input type="text" id="bottom-text" required placeholder="Bottom Text">
+    </div>
+
+    <button type="submit">Let the memes begin! *muahaha*</button>
+</form>
+
+<!-- Memes to go -->
+<div id="meme-container" class="meme-container"></div>
 
     <ul id="meme-list">
     </ul>

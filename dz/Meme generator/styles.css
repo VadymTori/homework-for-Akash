@@ -1,3 +1,4 @@
+/* styles has been taken from previos project (it's soo cute), don't you think so, Akash?! */
 *
 body {
     font-family: 'Courier New', Courier, monospace;
@@ -155,4 +156,161 @@ button:hover {
     line-height: 1.4;
     padding: 4px 8px;
     min-height: 50px;
+}
+/* inline auto*/
+.meme-form {
+    max-width: 600px;
+    margin: 40px auto;
+    background-color: #1a1a1a;
+    padding: 40px 30px;
+    border: 3px solid #ea00ff;
+    border-radius: 12px;
+    box-shadow: 0 0 30px rgb(89, 201, 242);
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 1.1em;
+    margin-bottom: 8px;
+    color: #ea00ff;
+    text-shadow: 0 0 8px rgba(99, 198, 255, 0.6);
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 14px 18px;
+    font-size: 1.15em;
+    background-color: #0f0f0f;
+    border: 3px solid #ea00ff;
+    color: #ea00ff;
+    border-radius: 8px;
+    outline: none;
+    box-shadow: 0 0 15px rgba(43, 0, 255, 0.4);
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: #00d9ff;
+    box-shadow: 0 0 25px rgba(90, 228, 255, 0.8);
+    background-color: #1a1a1a;
+}
+
+.form-group input::placeholder {
+    color: #ea00ff;
+    opacity: 0.6;
+}
+
+/* btn */
+.meme-form button {
+    width: 100%;
+    padding: 16px;
+    font-size: 1.3em;
+    margin-top: 15px;
+    background-color: #1a1a1a;
+    border: 3px solid #ea00ff;
+    color: #ea00ff;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.4s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.meme-form button:hover {
+    background-color: #ea00ff;
+    color: #0a0a0a;
+    box-shadow: 0 0 40px rgba(234, 0, 255, 1);
+    transform: scale(1.03);
+}
+.meme-form {
+    max-width: 620px;
+    margin: 40px auto;
+    background-color: #1a1a1a;
+    padding: 35px 30px;
+    border: 3px solid #00aaff;
+    border-radius: 12px;
+    box-shadow: 0 0 30px rgb(2, 203, 248);
+}
+
+.meme-container {
+    max-width: 900px;
+    margin: 40px auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+}
+
+/* .me color green change to pink */
+.meme {
+    position: relative;
+    width: 380px;
+    border: 4px solid #00ff9d;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 25px rgba(0, 255, 157, 0.6);
+    background: #000;
+    transition: transform 0.3s ease;
+}
+
+.meme:hover {
+    transform: scale(1.04);
+}
+
+.meme img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Meme Text */
+.meme-text {
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-family: Impact, 'Arial Black', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 
+        -3px -3px 0 #000,
+         3px -3px 0 #000,
+        -3px  3px 0 #000,
+         3px  3px 0 #000;
+    padding: 10px 15px;
+    line-height: 1.1;
+    pointer-events: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.top-text    { top: 15px; }
+.bottom-text { bottom: 15px; }
+
+/* Delete Button */
+.delete-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #ff0044;
+    color: white;
+    border: 3px solid #ff0044;
+    padding: 8px 14px;
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: 6px;
+    z-index: 10;
+    transition: all 0.3s;
+}
+
+.delete-btn:hover {
+    background: #fff;
+    color: #ff0044;
+    box-shadow: 0 0 20px #ff0044;
 }
