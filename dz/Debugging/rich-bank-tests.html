@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Rich Bank Test Runner</title>
+	<style>
+		:root {
+			--bg: #f4efe7;
+			--panel: #fffaf3;
+			--text: #1f2933;
+			--muted: #52606d;
+			--accent: #0b6e4f;
+			--error: #b42318;
+			--border: #d9cbb8;
+			--log-bg: #1f2933;
+			--log-text: #e4ecf2;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			margin: 0;
+			font-family: Georgia, "Times New Roman", serif;
+			background:
+				radial-gradient(circle at top left, rgba(11, 110, 79, 0.18), transparent 35%),
+				linear-gradient(135deg, #f8f4ed, var(--bg));
+			color: var(--text);
+		}
+
+		.page {
+			max-width: 1100px;
+			margin: 0 auto;
+			padding: 32px 20px 48px;
+		}
+
+		h1 {
+			margin: 0 0 10px;
+			font-size: clamp(2rem, 4vw, 3.2rem);
+		}
+
+		p {
+			margin: 0 0 16px;
+			color: var(--muted);
+			line-height: 1.5;
+		}
+
+		.controls,
+		.panel {
+			background: rgba(255, 250, 243, 0.92);
+			border: 1px solid var(--border);
+			border-radius: 18px;
+			box-shadow: 0 14px 30px rgba(31, 41, 51, 0.08);
+		}
+
+		.controls {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 12px;
+			align-items: center;
+			padding: 18px;
+			margin: 24px 0 20px;
+		}
+
+		button {
+			border: none;
+			border-radius: 999px;
+			padding: 12px 18px;
+			font: inherit;
+			cursor: pointer;
+		}
+
+		.primary {
+			background: var(--accent);
+			color: #fff;
+		}
+
+		.secondary {
+			background: #e8ddd0;
+			color: var(--text);
+		}
+
+		.grid {
+			display: grid;
+			grid-template-columns: 1.1fr 0.9fr;
+			gap: 20px;
+		}
+
+		.panel {
+			padding: 18px;
+		}
+
+		h2 {
+			margin: 0 0 14px;
+			font-size: 1.2rem;
+		}
+
+		.results {
+			display: grid;
+			gap: 10px;
+		}
+
+		.result-item {
+			padding: 12px 14px;
+			border-radius: 14px;
+			border: 1px solid var(--border);
+			background: #fff;
+		}
+
+		.result-item.pass {
+			border-color: rgba(11, 110, 79, 0.32);
+			background: rgba(11, 110, 79, 0.08);
+		}
+
+		.result-item.fail {
+			border-color: rgba(180, 35, 24, 0.28);
+			background: rgba(180, 35, 24, 0.08);
+		}
+
+		.result-item strong {
+			display: block;
+			margin-bottom: 6px;
+		}
+
+		.result-meta {
+			font-size: 0.95rem;
+			color: var(--muted);
+		}
+
+		.log {
+			margin: 0;
+			padding: 14px;
+			min-height: 520px;
+			overflow: auto;
+			border-radius: 14px;
+			background: var(--log-bg);
+			color: var(--log-text);
+			font-family: Consolas, "Courier New", monospace;
+			font-size: 0.95rem;
+			line-height: 1.45;
+			white-space: pre-wrap;
+		}
+
+		.summary {
+			font-weight: 700;
+			color: var(--text);
+		}
+
+		.summary.error {
+			color: var(--error);
+		}
+
+		code {
+			font-family: Consolas, "Courier New", monospace;
+		}
+
+		@media (max-width: 800px) {
+			.grid {
+				grid-template-columns: 1fr;
+			}
+
+			.log {
+				min-height: 320px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="page">
+		<h1>Rich Bank Test Runner</h1>
+		<p>This page runs the bank function checks from the hints section in <code>rich-bank.js</code> and shows the results directly on the page.</p>
+
+		<div class="controls">
+			<button class="primary" id="run-tests">Run tests</button>
+			<button class="secondary" id="clear-log">Clear log</button>
+			<div class="summary" id="summary">Ready to run.</div>
+		</div>
+
+		<div class="grid">
+			<section class="panel">
+				<h2>Test results</h2>
+				<div class="results" id="results"></div>
+			</section>
+
+			<section class="panel">
+				<h2>Console output</h2>
+				<pre class="log" id="log">Click "Run tests" to start.</pre>
+			</section>
+		</div>
+	</div>
+
+	<script src="./rich-bank.js"></script>
+	<script>
+		const logElement = document.getElementById("log");
+		const resultsElement = document.getElementById("results");
+		const summaryElement = document.getElementById("summary");
+		const runButton = document.getElementById("run-tests");
+		const clearButton = document.getElementById("clear-log");
+
+		const originalConsoleLog = console.log.bind(console);
+		const originalConsoleError = console.error.bind(console);
+
+		function formatValue(value) {
+			if (value instanceof Error) {
+				return value.name + ": " + value.message;
+			}
+
+			if (typeof value === "string") {
+				return value;
+			}
+
+			try {
+				return JSON.stringify(value, null, 2);
+			} catch (error) {
+				return String(value);
+			}
+		}
+
+		function setSummary(message, isError) {
+			summaryElement.textContent = message;
+			summaryElement.classList.toggle("error", Boolean(isError));
+		}
+
+		function appendLog(type) {
+			const values = Array.from(arguments).slice(1);
+			const line = "[" + type + "] " + values.map(formatValue).join(" ");
+			logElement.textContent += (logElement.textContent ? "\n" : "") + line;
+		}
+
+		console.log = function () {
+			appendLog.apply(null, ["log"].concat(Array.from(arguments)));
+			originalConsoleLog.apply(console, arguments);
+		};
+
+		console.error = function () {
+			appendLog.apply(null, ["error"].concat(Array.from(arguments)));
+			originalConsoleError.apply(console, arguments);
+		};
+
+		const tests = [
+			{
+				label: 'getAccountById("1")',
+				expectation: "should return undefined for a string ID",
+				run: function () {
+					return window.richBank.getAccountById("1");
+				},
+				assert: function (result) {
+					if (result !== undefined) {
+						throw new Error("Expected undefined because IDs must match strictly.");
+					}
+
+					return "Returned undefined as expected.";
+				}
+			},
+			{
+				label: 'createAccount(1, "Alice")',
+				expectation: "should reject a duplicate account ID",
+				run: function () {
+					return window.richBank.createAccount(1, "Alice");
+				},
+				expectedError: "Account ID already exists."
+			},
+			{
+				label: 'createAccount("3", "Charlie")',
+				expectation: "should reject a string ID",
+				run: function () {
+					return window.richBank.createAccount("3", "Charlie");
+				},
+				expectedError: "Invalid account ID: ID must be a number over zero."
+			},
+			{
+				label: 'createAccount(-3, "Charlie")',
+				expectation: "should reject a negative ID",
+				run: function () {
+					return window.richBank.createAccount(-3, "Charlie");
+				},
+				expectedError: "Invalid account ID: ID must be a number over zero."
+			},
+			{
+				label: 'createAccount(3, ["Charlie"])',
+				expectation: "should reject a non-string owner",
+				run: function () {
+					return window.richBank.createAccount(3, ["Charlie"]);
+				},
+				expectedError: "Invalid owner: You forget to type something."
+			},
+			{
+				label: 'createAccount(3, "")',
+				expectation: "should reject an empty owner",
+				run: function () {
+					return window.richBank.createAccount(3, "");
+				},
+				expectedError: "Invalid owner: You forget to type something."
+			},
+			{
+				label: 'createAccount(3, "  ")',
+				expectation: "should reject a blank owner",
+				run: function () {
+					return window.richBank.createAccount(3, "  ");
+				},
+				expectedError: "Invalid owner: You forget to type something."
+			},
+			{
+				label: 'depositMoney(1, "300")',
+				expectation: "should reject a string amount",
+				run: function () {
+					return window.richBank.depositMoney(1, "300");
+				},
+				expectedError: "Invalid value for deposit amount: The amount must be a positive finite number."
+			},
+			{
+				label: "depositMoney(1, -300)",
+				expectation: "should reject a negative deposit",
+				run: function () {
+					return window.richBank.depositMoney(1, -300);
+				},
+				expectedError: "Invalid value for deposit amount: The amount must be a positive finite number."
+			},
+			{
+				label: "depositMoney(1, 0)",
+				expectation: "should reject a zero deposit",
+				run: function () {
+					return window.richBank.depositMoney(1, 0);
+				},
+				expectedError: "Invalid value for deposit amount: The amount must be a positive finite number."
+			},
+			{
+				label: "depositMoney(1, Infinity)",
+				expectation: "should reject Infinity",
+				run: function () {
+					return window.richBank.depositMoney(1, Infinity);
+				},
+				expectedError: "Invalid value for deposit amount: The amount must be a positive finite number."
+			},
+			{
+				label: "depositMoney(4, 100)",
+				expectation: "should reject a missing account",
+				run: function () {
+					return window.richBank.depositMoney(4, 100);
+				},
+				expectedError: "Account not found"
+			},
+			{
+				label: "withdrawMoney(1, -100)",
+				expectation: "should reject a negative withdrawal",
+				run: function () {
+					return window.richBank.withdrawMoney(1, -100);
+				},
+				expectedError: "Invalid value for withdrawal amount: The amount must be a positive finite number."
+			},
+			{
+				label: "withdrawMoney(1, 0)",
+				expectation: "should reject a zero withdrawal",
+				run: function () {
+					return window.richBank.withdrawMoney(1, 0);
+				},
+				expectedError: "Invalid value for withdrawal amount: The amount must be a positive finite number."
+			},
+			{
+				label: "withdrawMoney(1, 501)",
+				expectation: "should reject an overdraft",
+				run: function () {
+					return window.richBank.withdrawMoney(1, 501);
+				},
+				expectedError: "Insufficient funds: Cannot withdraw more than account balance."
+			},
+			{
+				label: "transferMoney(1, 4, 100)",
+				expectation: "should reject a missing destination account",
+				run: function () {
+					return window.richBank.transferMoney(1, 4, 100);
+				},
+				expectedError: "Destination account not found."
+			},
+			{
+				label: "transferMoney(1, 2, 501)",
+				expectation: "should reject a transfer larger than the balance",
+				run: function () {
+					return window.richBank.transferMoney(1, 2, 501);
+				},
+				expectedError: "Insufficient funds: Cannot transfer more than account balance."
+			},
+			{
+				label: "transferMoney(1, 2, 100)",
+				expectation: "should move money between both accounts",
+				run: function () {
+					window.richBank.transferMoney(1, 2, 100);
+
+					return {
+						fromBalance: window.richBank.getAccountById(1).balance,
+						toBalance: window.richBank.getAccountById(2).balance
+					};
+				},
+				assert: function (result) {
+					if (result.fromBalance !== 400 || result.toBalance !== 400) {
+						throw new Error("Expected account 1 to have 400 and account 2 to have 400 after the transfer.");
+					}
+
+					return "Balances updated correctly.";
+				}
+			}
+		];
+
+		function renderResult(label, passed, message) {
+			const item = document.createElement("div");
+			item.className = "result-item " + (passed ? "pass" : "fail");
+
+			const title = document.createElement("strong");
+			title.textContent = (passed ? "PASS: " : "FAIL: ") + label;
+
+			const meta = document.createElement("div");
+			meta.className = "result-meta";
+			meta.textContent = message;
+
+			item.appendChild(title);
+			item.appendChild(meta);
+			resultsElement.appendChild(item);
+		}
+
+		function runSingleTest(test) {
+			try {
+				const result = test.run();
+
+				if (test.expectedError) {
+					throw new Error("Expected an error, but the function completed successfully.");
+				}
+
+				const successMessage = test.assert ? test.assert(result) : "Completed successfully.";
+				console.log(test.label + " -> PASS");
+				renderResult(test.label, true, test.expectation + " " + successMessage);
+				return true;
+			} catch (error) {
+				if (test.expectedError && error.message === test.expectedError) {
+					console.log(test.label + " -> PASS (caught expected error)");
+					renderResult(test.label, true, test.expectation + " Caught expected error: " + error.message);
+					return true;
+				}
+
+				console.error(test.label + " -> FAIL: " + error.message);
+				renderResult(test.label, false, test.expectation + " " + error.message);
+				return false;
+			}
+		}
+
+		function runTests() {
+			logElement.textContent = "";
+			resultsElement.innerHTML = "";
+
+			try {
+				if (!window.richBank) {
+					throw new Error("rich-bank.js did not load or did not create window.richBank.");
+				}
+
+				if (typeof window.richBank.resetAccounts !== "function") {
+					throw new Error("rich-bank.js is missing resetAccounts().");
+				}
+
+				window.richBank.resetAccounts();
+
+				let passedCount = 0;
+
+				console.log("Starting tests...");
+				console.log("Initial accounts:", window.richBank.accounts);
+
+				for (const test of tests) {
+					if (runSingleTest(test)) {
+						passedCount += 1;
+					}
+				}
+
+				console.log("Final accounts:", window.richBank.accounts);
+				setSummary("Passed " + passedCount + " out of " + tests.length + " tests.", passedCount !== tests.length);
+			} catch (error) {
+				console.error("Test runner error:", error.message);
+				renderResult("Runner setup", false, error.message);
+				setSummary("Error: " + error.message, true);
+			}
+		}
+
+		runButton.addEventListener("click", runTests);
+		clearButton.addEventListener("click", function () {
+			logElement.textContent = "";
+			resultsElement.innerHTML = "";
+			setSummary("Log cleared.", false);
+		});
+
+		if (!window.richBank) {
+			setSummary("rich-bank.js has not loaded yet.", true);
+		}
+	</script>
+</body>
+</html>
