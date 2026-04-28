@@ -1,3 +1,29 @@
+// Override console.log to display in HTML
+const consoleOutput = document.getElementById('console-output');
+const originalLog = console.log;
+
+console.log = function(...args) {
+    originalLog.apply(console, args);
+    
+    const entry = document.createElement('div');
+    entry.className = 'log-entry';
+    
+    const text = args.join(' ');
+    if (text.includes('Success')) {
+        entry.classList.add('success');
+    } else if (text.includes('Failed')) {
+        entry.classList.add('fail');
+    } else if (text.includes('Total')) {
+        entry.classList.add('total');
+    } else if (text.includes('completed')) {
+        entry.classList.add('info');
+    }
+    
+    entry.textContent = text;
+    consoleOutput.appendChild(entry);
+    consoleOutput.scrollTop = consoleOutput.scrollHeight;
+};
+
 //This task has been done by AI- due to my idea failed and I was looking to way how to make it. I checked th esolution and edit it in my way. I'm not proud of that
 function mysteryOperation() {
     const outcome = Math.random(); // Generates a random number between 0 and 1.
@@ -9,7 +35,7 @@ function mysteryOperation() {
     }
 }
 
-// Track vacation days
+// Days tracking
 let totalVacationDays = 0;
 const totalMissions = 20;
 
@@ -31,5 +57,5 @@ for (let i = 1; i <= totalMissions; i++) {
 
 console.log(`\n🎉 Total vacation days earned: ${totalVacationDays} days!`);
 
-// Display result on page
+// Display result
 document.getElementById('result').textContent = `Total vacation days: ${totalVacationDays}`;
