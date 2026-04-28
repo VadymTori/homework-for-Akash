@@ -1,40 +1,84 @@
 // Task 1: Declare The Task Array and The Interval ID
 // TODO: Begin by declaring an array to hold your one-time tasks (`oneTimeTasks`) and variables for any interval IDs you'll need for continuous tasks (`monitoringTaskId`).
 
+const consoleOutput = document.getElementById('console-output');
+const originalLog = console.log;
+
+console.log = function(...args) {
+    originalLog.apply(console, args);
+    
+    const entry = document.createElement('div');
+    entry.className = 'log-entry';
+    entry.textContent = args.join(' ');
+    consoleOutput.appendChild(entry);
+    consoleOutput.scrollTop = consoleOutput.scrollHeight;
+};
+
+// Task 1: Declare The Task Array and The Interval ID
+const oneTimeTasks = [];
+let monitoringTaskId;
+
 // Task 2: Add One-Time Task Function
-function addOneTimeTask (func, delay)
-{
-	// TODO: Write a function named `addOneTimeTask` that accepts a function (`func`) and a delay (`delay`) as parameters. This function should add an object containing both parameters into the `oneTimeTasks` array.
+function addOneTimeTask(func, delay) {
+    oneTimeTasks.push({ func, delay });
 }
 
 // Task 3: Run One-Time Tasks Function
-function runOneTimeTasks ()
-{
-	// TODO: Create a function named `runOneTimeTasks` that iterates over the `oneTimeTasks` array and uses `setTimeout` to schedule each task according to its delay.
+function runOneTimeTasks() {
+    oneTimeTasks.forEach(task => {
+        setTimeout(task.func, task.delay);
+    });
 }
 
 // Task 4: Start Monitoring Function
-function startMonitoring ()
-{
-	// TODO: Write a function named `startMonitoring` that uses `setInterval` to simulate continuous monitoring. This function should print a message every few seconds and store the interval ID in `monitoringTaskId`.
+function startMonitoring() {
+    monitoringTaskId = setInterval(() => {
+        console.log("System monitoring: All systems nominal...");
+    }, 3000);
 }
 
 // Task 5: Stop Monitoring Function
-function stopMonitoring ()
-{
-	// TODO: Implement a function named `stopMonitoring` that stops the continuous monitoring by using `clearInterval` on `monitoringTaskId`.
+function stopMonitoring() {
+    clearInterval(monitoringTaskId);
+    console.log("Monitoring stopped.");
 }
 
 // Task 6: Start Countdown Function
-function startCountdown (duration)
-{
-	// TODO: Create a function named `startCountdown` that takes a duration parameter. Use `setInterval` to decrease the countdown every second and print the remaining time. Use `clearInterval` to stop the countdown when it reaches zero, printing a "Liftoff!" message.
+function startCountdown(duration) {
+    let remaining = duration;
+    
+    console.log("Rocket engines preparing...");
+    
+    const countdownId = setInterval(() => {
+        console.log(`Countdown: ${remaining} seconds remaining`);
+        remaining--;
+        
+        if (remaining < 0) {
+            clearInterval(countdownId);
+            console.log("Liftoff!");
+        }
+    }, 1000);
 }
 
 // Task 7: Schedule Pre-Launch Activities and Launch
-function scheduleMission ()
-{
-	// TODO: Use the functions you've created to schedule the pre-launch system check, start and stop monitoring, and execute the countdown. Make sure to adjust the delays appropriately to simulate a real mission timeline.
+function scheduleMission() {
+    // Add one-time tasks
+    addOneTimeTask(() => console.log("Pre-launch system check: All systems go!"), 1000);
+    addOneTimeTask(startMonitoring, 2000);
+    addOneTimeTask(() => {
+        stopMonitoring();
+        startCountdown(5);
+    }, 8000);
+    
+    // Run all one-time tasks
+    runOneTimeTasks();
 }
 
-scheduleMission(); // Starts the mission.
+// Start mission on button click
+document.getElementById('start-btn').addEventListener('click', function() {
+    // Disable button to prevent multiple clicks
+    this.disabled = true;
+    this.textContent = 'Mission in progress...';
+    
+    scheduleMission();
+});

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- html+css has been taken from previous task -->
     <title>Asynchronous JavaScript Exercise</title>
     <style>
         body {
@@ -42,11 +43,28 @@
         .fail { color: #e74c3c; }
         .info { color: #3498db; }
         .total { color: #f39c12; font-weight: bold; }
+        #start-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 15px 40px;
+            font-size: 1.5em;
+            font-family: 'Courier New', monospace;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+        }
+        #start-btn:hover {
+            background: #c0392b;
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
     <h1>Code display</h1>
-    <div id="result">Let's go</div>
+    <button id="start-btn">🚀 Start Mission</button>
     <div id="console-output"></div>
 
     <script src="script.js"></script>
