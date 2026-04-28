@@ -1,4 +1,4 @@
-// Task 1: Declare The Task Array and The Interval ID
+
 // TODO: Begin by declaring an array to hold your one-time tasks (`oneTimeTasks`) and variables for any interval IDs you'll need for continuous tasks (`monitoringTaskId`).
 
 const consoleOutput = document.getElementById('console-output');
