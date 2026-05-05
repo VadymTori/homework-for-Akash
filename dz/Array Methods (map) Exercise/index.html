@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- html+css has been taken from previous task -->
+    <title>Asynchronous JavaScript Exercise</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e0e0e0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        h1 {
+            text-align: center;
+            color: #f39c12;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        #result {
+            text-align: center;
+            font-size: 2em;
+            color: #2ecc71;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            border: 2px solid #f39c12;
+        }
+        #console-output {
+            background: #0d0d0d;
+            border: 1px solid #333;
+            border-radius: 5px;
+            padding: 15px;
+            max-height: 400px;
+            overflow-y: auto;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .log-entry { margin: 2px 0; }
+        .success { color: #2ecc71; }
+        .fail { color: #e74c3c; }
+        .info { color: #3498db; }
+        .total { color: #f39c12; font-weight: bold; }
+        #start-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 15px 40px;
+            font-size: 1.5em;
+            font-family: 'Courier New', monospace;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+        }
+        #start-btn:hover {
+            background: #c0392b;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <h1>Code display</h1>
+    <!-- <button id="start-btn">🚀 Start Mission</button> -->
+    <div id="console-output"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
