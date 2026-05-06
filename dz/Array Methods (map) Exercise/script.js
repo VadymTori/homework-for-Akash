@@ -8,7 +8,7 @@ const transformedUsers = users.map(user => ({
 	fullName: `${user.firstName} ${user.lastName}`,
 	membershipStatus: user.points > 100 ? "Premium" : "Standard"
 }));
-// Displat part --------------------------
+// Display code part --------------------------
 const outputElement = document.getElementById('console-output');
 const log = message => {
 	console.log(message);
@@ -22,4 +22,4 @@ const log = message => {
 
 log('Transformed users:');
 log(transformedUsers);
-// ---------------------------------------
+// -------------------------------------------
