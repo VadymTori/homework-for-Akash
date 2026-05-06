@@ -8,7 +8,7 @@ const planets = [
 	{name: "Uranus", temperature: 78, distance: 19.22},
 	{name: "Neptune", temperature: 73, distance: 30.05}
 ];
-
+//take elements from html
 const tempMinInput = document.getElementById('temp-min');
 const tempMaxInput = document.getElementById('temp-max');
 const distMinInput = document.getElementById('dist-min');
@@ -18,7 +18,7 @@ const showResultsButton = document.getElementById('show-results');
 
 const parseNumber = value => {
 	const parsed = Number(value);
-	return Number.isFinite(parsed) ? parsed : null;
+	return Number.isFinite(parsed) ? parsed : null; //null
 };
 
 const renderResults = filteredPlanets => {
@@ -31,7 +31,7 @@ const renderResults = filteredPlanets => {
 		resultsList.appendChild(empty);
 		return;
 	}
-
+// Should add  max\min values later
 	filteredPlanets.forEach(planet => {
 		const card = document.createElement('div');
 		card.className = 'planet-card';
@@ -43,24 +43,26 @@ const renderResults = filteredPlanets => {
 		resultsList.appendChild(card);
 	});
 };
-
+//fiters temp
 const filterPlanets = () => {
 	const tempMin = parseNumber(tempMinInput.value);
 	const tempMax = parseNumber(tempMaxInput.value);
+//dist
 	const distMin = parseNumber(distMinInput.value);
 	const distMax = parseNumber(distMaxInput.value);
-
+//temp
 	const filtered = planets.filter(planet => {
 		const matchesTempMin = tempMin === null || planet.temperature >= tempMin;
 		const matchesTempMax = tempMax === null || planet.temperature <= tempMax;
+//dist
 		const matchesDistMin = distMin === null || planet.distance >= distMin;
 		const matchesDistMax = distMax === null || planet.distance <= distMax;
 
 		return matchesTempMin && matchesTempMax && matchesDistMin && matchesDistMax;
 	});
 
-	renderResults(filtered);
+	renderResults(filtered);//??? add at index
 };
-
+//results
 showResultsButton.addEventListener('click', filterPlanets);
 
