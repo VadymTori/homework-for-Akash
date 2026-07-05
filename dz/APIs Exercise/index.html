@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>APIs Exercise</title>
+
+		<link
+				rel="stylesheet"
+				href="style.css"
+		>
+	</head>
+	<body>
+		<main>
+			<h1>Very Secret Hacker Hub</h1>
+
+			<section>
+				<h2>System</h2>
+
+				<   iv>
+					<h3>Login</h3>
+
+					<form id="login-form">
+						<label for="email-input">Your Secret E-mail:</label>
+						<input
+								id="email-input"
+								type="email"
+								placeholder="Don't try michaelw@reqres.in"
+								required
+						>
+
+						<label for="password-input">Your Secret Password:</label>
+						<input
+								id="password-input"
+								type="password"
+								placeholder="Absolutly not michaelwpass"
+								required
+						>
+
+						<button type="submit">Infiltrate</button>
+					</form>
+				</div>
+
+				<div>
+					<h3>Logout</h3>
+
+					<button id="logout-button">Sneak Away</button>
+				</div>
+
+				<div
+						id="system-message"
+						class="container"
+				>...</div>
+			</section>
+
+			<section>
+				<h2>Gather Intelligence</h2>
+
+				<div>
+					<form id="intelligence-form">
+						<label for="page-number-input">Page Number:</label>
+						<input
+								id="page-number-input"
+								type="number"
+								min="1"
+								value="1"
+						>
+
+						<button type="submit">Fetch Hackers</button>
+					</form>
+				</div>
+
+				<div
+						id="hackers"
+						class="container"
+				>...</div>
+			</section>
+		</main>
+
+		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+		<script src="script.js"></script>
+	</body>
+</html>
