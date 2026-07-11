@@ -1,23 +1,314 @@
 /*
-  You don't need to touch this file to complete the assignment!
-  Unless you want to add styles and make it look more beautiful.
+  Jeopardy! cosmetic styles — card board, timer panel, and game chrome.
 */
 
-/*
-  Some colors you may find useful:
-  #115ff4
-  #060ce9
-  #28a200
-  #8d2ab5
-  #74119c
-*/
+:root
+{
+  --jeopardy-blue: #060ce9;
+  --jeopardy-blue-light: #115ff4;
+  --jeopardy-gold: #ffd700;
+  --jeopardy-gold-dark: #c9a400;
+  --jeopardy-purple: #74119c;
+  --jeopardy-green: #28a200;
+  --card-shadow: 0 4px 0 #0a0a6e, 0 8px 16px rgba(0, 0, 0, 0.35);
+}
+
+*
+{
+  box-sizing: border-box;
+}
+
+body
+{
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #fff;
+  background: radial-gradient(circle at top, var(--jeopardy-blue-light), var(--jeopardy-blue) 55%, #03045a);
+}
+
+h1
+{
+  margin: 1.5rem 0 0.75rem;
+  text-align: center;
+  font-size: 2.5rem;
+  letter-spacing: 0.08em;
+  text-shadow: 0 2px 0 #000;
+}
+
+#play
+{
+  display: block;
+  margin: 0 auto 1.5rem;
+  padding: 0.75rem 1.75rem;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--jeopardy-gold), var(--jeopardy-gold-dark));
+  color: #1a1200;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #7a6400;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+#play:hover
+{
+  transform: translateY(-1px);
+}
+
+#play:active
+{
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #7a6400;
+}
+
+section
+{
+  width: min(1100px, 96vw);
+  margin: 0 auto 2rem;
+}
+
+table
+{
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 10px;
+  table-layout: fixed;
+}
+
+thead th
+{
+  padding: 1rem 0.5rem;
+  background: linear-gradient(180deg, var(--jeopardy-purple), #4a0d6b);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  vertical-align: middle;
+  box-shadow: 0 3px 0 #2d0744;
+}
+
+#clues > td
+{
+  padding: 0;
+  vertical-align: top;
+}
+
+#clues table
+{
+  width: 100%;
+  border-spacing: 0 10px;
+}
+
+.clue td
+{
+  padding: 0;
+  border: none;
+}
+
+.clue-card
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 72px;
+  padding: 0.75rem;
+  border-radius: 10px;
+  background: linear-gradient(145deg, #ffe566, var(--jeopardy-gold) 45%, #d4a800);
+  color: var(--jeopardy-blue);
+  font-weight: 800;
+  font-size: 1.35rem;
+  cursor: pointer;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+  user-select: none;
+}
+
+.clue-card:hover
+{
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
+
+.clue-card:active
+{
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #0a0a6e, 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.clue-card__value
+{
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.clue.viewed .clue-card
+{
+  background: linear-gradient(145deg, #4a4a5e, #2e2e42);
+  color: #7a7a90;
+  cursor: default;
+  box-shadow: none;
+  transform: none;
+  filter: none;
+  opacity: 0.65;
+}
+
+.clue.viewed .clue-card:hover
+{
+  transform: none;
+  filter: none;
+}
+
+#active-clue
+{
+  min-height: 180px;
+  margin-top: 1rem;
+  padding: 1.5rem;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #0d1db8, var(--jeopardy-blue));
+  border: 3px solid var(--jeopardy-gold);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  text-align: center;
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+#active-clue:empty
+{
+  display: none;
+}
+
+#active-clue.is-question
+{
+  cursor: default;
+}
+
+#active-clue.is-answer
+{
+  cursor: pointer;
+  background: linear-gradient(180deg, #0f6b12, var(--jeopardy-green));
+}
+
+#active-clue.is-end
+{
+  cursor: default;
+  background: linear-gradient(180deg, var(--jeopardy-purple), #4a0d6b);
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.active-clue__question
+{
+  margin: 0 0 1.25rem;
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+.active-clue__timer
+{
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.active-clue__timer-ring
+{
+  position: relative;
+  width: 72px;
+  height: 72px;
+}
+
+.active-clue__timer-ring svg
+{
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.active-clue__timer-track
+{
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.2);
+  stroke-width: 6;
+}
+
+.active-clue__timer-progress
+{
+  fill: none;
+  stroke: var(--jeopardy-gold);
+  stroke-width: 6;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s linear;
+}
+
+.active-clue__timer-value
+{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  font-weight: 800;
+}
+
+.active-clue__timer-label
+{
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.active-clue__answer
+{
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.active-clue__answer-label
+{
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.active-clue__hint
+{
+  display: block;
+  margin-top: 0.75rem;
+  font-size: 1.8rem;
+  opacity: 0.75;
+  color: red; 
+  /* color red to make it more visible */
+}
 
 .disabled
 {
   display: none;
 }
 
-.viewed
+#spinner
 {
-  text-decoration: line-through;
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(3, 4, 90, 0.55);
+  font-size: 3rem;
+  color: var(--jeopardy-gold);
+  z-index: 100;
+}
+
+/* ID beats .disabled alone — must combine selectors to hide spinner on load */
+#spinner.disabled
+{
+  display: none;
 }

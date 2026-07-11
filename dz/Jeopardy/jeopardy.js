@@ -48,7 +48,8 @@ Category: The name given to the structure containing clues on the same topic.
   ]
 }
  */
-
+//------------------------------------------------------------------------------------
+//Hey, Akash!I'm still working on sound production for the game...
 /** API_URL — base URL for all Axios requests to the Rithm Jeopardy API. */
 const API_URL = "https://rithm-jeopardy.herokuapp.com/api/";
 
@@ -58,6 +59,9 @@ const NUMBER_OF_CATEGORIES = 6;
 /** NUMBER_OF_CLUES_PER_CATEGORY — how many clue rows to show under each category (5). */
 const NUMBER_OF_CLUES_PER_CATEGORY = 5;
 
+/** REVEAL_SECONDS — how long the question stays visible before the answer auto-reveals. */
+const REVEAL_SECONDS = 10;
+
 /**
  * categories — global array of category objects, each holding its clues.
  * Mutated during play: clues are removed as the user clicks them.
@@ -66,6 +70,7 @@ const NUMBER_OF_CLUES_PER_CATEGORY = 5;
 let categories = [];
 
 /** activeClue — the clue object the user most recently clicked on the board. */
+/**Check other ways to click */
 let activeClue = null;
 
 /**
@@ -82,6 +87,115 @@ let activeClueMode = 0;
  * false → game is in progress; button clicks are ignored.
  */
 let isPlayButtonClickable = true;
+
+/** revealTimeoutId — setTimeout handle for the 10-second auto-reveal. */
+let revealTimeoutId = null;
+
+/** countdownIntervalId — setInterval handle that updates the visible timer each second. */
+let countdownIntervalId = null;
+
+/**
+ * clearActiveTimers — cancels any running reveal/countdown timers.
+ * Called before starting a new clue or resetting the game.
+ */
+function clearActiveTimers ()
+{
+  if (revealTimeoutId !== null)
+  {
+    clearTimeout(revealTimeoutId);
+    revealTimeoutId = null;
+  }
+
+  if (countdownIntervalId !== null)
+  {
+    clearInterval(countdownIntervalId);
+    countdownIntervalId = null;
+  }
+}
+
+/**
+ * showQuestionWithTimer — renders the clue question in #active-clue with a
+ * visible countdown; automatically reveals the answer when the timer hits 0.
+ *
+ * @param {Object} clue — the active clue object ({ question, answer, value, id })
+ */
+function showQuestionWithTimer (clue)
+{
+  clearActiveTimers();
+
+  const circumference = 2 * Math.PI * 30; // 2πr where r = 30 (the radius of the SVG circle)
+  let secondsLeft = REVEAL_SECONDS;
+// max seconds value 10
+  $("#active-clue")
+    .removeClass("is-answer is-end")
+    .addClass("is-question")
+    .html(`
+      <p class="active-clue__question">${clue.question}</p>
+      <div class="active-clue__timer">
+        <div class="active-clue__timer-ring">
+          <svg viewBox="0 0 72 72" aria-hidden="true">
+            <circle class="active-clue__timer-track" cx="36" cy="36" r="30"></circle>
+            <circle
+              class="active-clue__timer-progress"
+              cx="36"
+              cy="36"
+              r="30"
+              stroke-dasharray="${circumference}"
+              stroke-dashoffset="0"
+            ></circle>
+          </svg>
+          <span class="active-clue__timer-value">${secondsLeft}</span>
+        </div>
+        <span class="active-clue__timer-label">seconds until answer</span>
+      </div>
+    `);
+
+  const $progress = $("#active-clue .active-clue__timer-progress");
+  const $timerValue = $("#active-clue .active-clue__timer-value");
+
+  countdownIntervalId = setInterval(() =>
+  {
+    secondsLeft -= 1;
+    $timerValue.text(Math.max(secondsLeft, 0));
+    $progress.attr(
+      "stroke-dashoffset",
+      circumference * (1 - secondsLeft / REVEAL_SECONDS)
+    );
+
+    if (secondsLeft <= 0)
+    {
+      clearInterval(countdownIntervalId);
+      countdownIntervalId = null;
+    }
+  }, 1000);
+
+  revealTimeoutId = setTimeout(() =>
+  {
+    revealAnswer();
+    revealTimeoutId = null;
+  }, REVEAL_SECONDS * 1000);
+}
+
+/**
+ * revealAnswer — switches #active-clue from the timed question view to the answer.
+ */
+function revealAnswer ()
+{
+  clearActiveTimers();
+  activeClueMode = 2;
+
+  $("#active-clue")
+    .removeClass("is-question")
+    .addClass("is-answer")
+    .html(`
+      <p class="active-clue__answer">
+        <span class="active-clue__answer-label">Correct answer</span>
+        ${activeClue.answer}
+      </p>
+      <span class="active-clue__hint">Click to continue</span> 
+    `);
+    // make it bigger to see Click to continue  
+}
 
 // Delegated click handler so dynamically created .clue rows still receive clicks.
 $("#clues").on("click", ".clue", handleClickOfClue);
@@ -131,9 +245,11 @@ async function setupTheGame ()
   $("#play").text("Start the Game!");
 
   // Reset in-memory game state variables.
+  clearActiveTimers();
   activeClue = null;
   activeClueMode = 0;
   categories = [];
+  $("#active-clue").removeClass("is-question is-answer is-end");
 
   try
   {
@@ -277,12 +393,18 @@ function fillTable (categories)
 
     for (const clue of category.clues)
     {
-      // Each clue is a <tr class="clue"> showing "?" until clicked.
+      // Each clue is a card-style cell showing its dollar value until clicked.
       // The id format "categoryId-clueId" lets handleClickOfClue find the clue.
       const $clueRow = $("<tr>")
         .addClass("clue")
         .attr("id", `${category.id}-${clue.id}`)
-        .text("?");
+        .append(
+          $("<td>").append(
+            $("<div>").addClass("clue-card").append(
+              $("<span>").addClass("clue-card__value").text(`$${clue.value}`)
+            )
+          )
+        );
 
       $innerTable.append($clueRow);
     }
@@ -314,6 +436,12 @@ function handleClickOfClue (event)
   // $clickedClue — the <tr class="clue"> element the user clicked.
   const $clickedClue = $(event.currentTarget);
 
+  // Already-played cards stay on the board but cannot be clicked again.
+  if ($clickedClue.hasClass("viewed"))
+  {
+    return;
+  }
+
   // elementId — string like "2-1183" → categoryId 2, clueId 1183.
   const elementId = $clickedClue.attr("id");
   const [categoryId, clueId] = elementId.split("-").map(Number);
@@ -337,9 +465,9 @@ function handleClickOfClue (event)
   // Mark the board cell as viewed (line-through via .viewed in style.css).
   $clickedClue.addClass("viewed");
 
-  // Show the question in the large #active-clue display area below the table.
+  // Show the question with a 10-second timer; answer reveals automatically.
   activeClueMode = 1;
-  $("#active-clue").html(activeClue.question);
+  showQuestionWithTimer(activeClue);
 }
 
 $("#active-clue").on("click", handleClickOfActiveClue);
@@ -356,24 +484,26 @@ $("#active-clue").on("click", handleClickOfActiveClue);
  */
 function handleClickOfActiveClue (event)
 {
+  // During the timed question phase, wait for the auto-reveal — ignore clicks.
   if (activeClueMode === 1)
   {
-    // Question is showing → reveal the answer.
-    activeClueMode = 2;
-    $("#active-clue").html(activeClue.answer);
+    return;
   }
-  else if (activeClueMode === 2)
+
+  if (activeClueMode === 2)
   {
     // Answer is showing → clear the display and reset mode.
+    clearActiveTimers();
     activeClueMode = 0;
-    $("#active-clue").html(null);
+    activeClue = null;
+    $("#active-clue").removeClass("is-answer").empty();
 
     // When every clue has been clicked, categories is empty → game over.
     if (categories.length === 0)
     {
       isPlayButtonClickable = true;
       $("#play").text("Restart the Game!");
-      $("#active-clue").html("The End!");
+      $("#active-clue").addClass("is-end").html("The End!");
     }
   }
 }
